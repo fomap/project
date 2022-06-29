@@ -6,24 +6,37 @@ namespace Scripts
 {
     public class Hero : MonoBehaviour
 {   
-    private float _direction; 
+    private float _directionHor;
+    private float _directionVert; 
     [SerializeField] private float _speed;
 
-    public void SetDirection(float direction)
+    public void SetDirectionHor(float direction)
     {
-      _direction = direction;
+      _directionHor = direction;
     }
+    public void SetDirectionVert(float direction)
+    {
+      _directionVert = direction;
+    }
+
 
 
 
 
     private void Update()
     {
-      if (_direction != 0)
+      
+      if (_directionHor != 0)
       {
-        var delta = _direction * _speed * Time.deltaTime; 
-        var newXPos = transform.position.x + delta; 
+        var deltaHor = _directionHor * _speed * Time.deltaTime; 
+        var newXPos = transform.position.x + deltaHor; 
         transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
+
+      } else 
+      {
+        var deltaVert = _directionVert * _speed * Time.deltaTime; 
+        var newYPos = transform.position.y + deltaVert; 
+        transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
 
       }
 

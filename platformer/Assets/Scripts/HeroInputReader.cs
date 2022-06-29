@@ -14,7 +14,13 @@ namespace Scripts
     public void OnHorizontalMovement(InputAction.CallbackContext context)
     {
         var direction = context.ReadValue<float>(); 
-        _hero.SetDirection(direction);
+        _hero.SetDirectionHor(direction);
+    }
+
+      public void OnVerticalMovement(InputAction.CallbackContext context)
+    {
+        var direction = context.ReadValue<float>(); 
+        _hero.SetDirectionVert(direction);
     }
 
 
