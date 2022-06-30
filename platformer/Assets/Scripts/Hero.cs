@@ -25,20 +25,34 @@ namespace Scripts
 
     private void Update()
     {
-      
+      /*
       if (_directionHor != 0)
       {
         var deltaHor = _directionHor * _speed * Time.deltaTime; 
         var newXPos = transform.position.x + deltaHor; 
         transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
 
-      } else 
+      } else if ( _directionVert  != 0)
       {
         var deltaVert = _directionVert * _speed * Time.deltaTime; 
         var newYPos = transform.position.y + deltaVert; 
         transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
 
       }
+      
+      */
+
+       if (_directionHor != 0 ||  _directionVert  != 0)
+      {
+        var deltaHor = _directionHor * _speed * Time.deltaTime; 
+        var newXPos = transform.position.x + deltaHor; 
+        var deltaVert = _directionVert * _speed * Time.deltaTime; 
+        var newYPos = transform.position.y + deltaVert; 
+        transform.position = new Vector3(newXPos, newYPos, transform.position.z);
+
+      }
+
+
 
 
 
@@ -49,6 +63,12 @@ namespace Scripts
     {
       Debug.Log("Smth");
     }
+
+
+
+
+
+    
 }
 }
 

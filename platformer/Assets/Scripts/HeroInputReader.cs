@@ -7,10 +7,15 @@ using UnityEngine.InputSystem;
 namespace Scripts
 {
     public class HeroInputReader : MonoBehaviour
+    
 {
     [SerializeField] private Hero _hero;
 
   
+   
+
+
+
     public void OnHorizontalMovement(InputAction.CallbackContext context)
     {
         var direction = context.ReadValue<float>(); 
@@ -31,6 +36,8 @@ namespace Scripts
             _hero.SaySmth(); 
         }
     }
+
+    
 
 } 
 
