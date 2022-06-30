@@ -14,7 +14,7 @@ namespace Scripts
   
    
 
-
+/*
 
     public void OnHorizontalMovement(InputAction.CallbackContext context)
     {
@@ -27,7 +27,13 @@ namespace Scripts
         var direction = context.ReadValue<float>(); 
         _hero.SetDirectionVert(direction);
     }
+    */
 
+    public void Movement (InputAction.CallbackContext context)
+    {
+        var direction = context.ReadValue<Vector2>(); 
+        _hero.SetDirection(direction);
+    }
 
     public void OnSaySmth (InputAction.CallbackContext context)
     {
