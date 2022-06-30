@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 4245931499
+    locked: 0
+  - name: Decorations
+    uniqueID: 3956840581
+    locked: 0
+  - name: Level
+    uniqueID: 380475655
+    locked: 0
+  - name: Character
+    uniqueID: 3259493195
+    locked: 0
+  - name: Props
+    uniqueID: 2817162827
+    locked: 0
