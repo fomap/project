@@ -7,88 +7,59 @@ namespace Scripts
     public class Hero : MonoBehaviour
 {   
 
-/*
-    private float _directionHor;
-    private float _directionVert; 
 
-
-*/
     [SerializeField] private float _speed;
+    [SerializeField] private float _jumpSpeed;
+    [SerializeField] private LayerCheck _groundCheck; 
+    private Rigidbody2D _rigidbody;  
     private Vector2 _direction; 
     
+    private void Awake()
+    {
+      _rigidbody = GetComponent<Rigidbody2D>(); 
+    }
+
+
     public void SetDirection(Vector2 direction)
     {
-      _direction = direction;
-    }
-/*
-    public void SetDirectionHor(float direction)
-    {
-      _directionHor = direction;
-    }
-    public void SetDirectionVert(float direction)
-    {
-      _directionVert = direction;
+        _direction = direction;
     }
 
-*/
 
 
 
-    private void Update()
+    private void FixedUpdate()
     {
+        _rigidbody.velocity = new Vector2(_direction.x * _speed, _rigidbody.velocity.y);
 
-        if (_direction.magnitude > 0)
+        var isJumping = _direction.y > 0; 
+        if (isJumping && IsGrounded())
         {
-          var delta = _direction * _speed * Time.deltaTime;
-          transform.position = transform.position + new Vector3 (delta.x, delta.y, transform.position.z);
+          _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse); 
         }
+    
+    
+    }
 
 
-      /*
-      if (_directionHor != 0)
-      {
-        var deltaHor = _directionHor * _speed * Time.deltaTime; 
-        var newXPos = transform.position.x + deltaHor; 
-        transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
 
-      } else if ( _directionVert  != 0)
-      {
-        var deltaVert = _directionVert * _speed * Time.deltaTime; 
-        var newYPos = transform.position.y + deltaVert; 
-        transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
-
-      }
+    private bool IsGrounded()
+    {
       
-      
+      return _groundCheck.IsTouchingLayer; 
+     
+    }
 
-       if (_directionHor != 0 ||  _directionVert  != 0 )
-      {
-        var deltaHor = _directionHor * _speed * Time.deltaTime; 
-        var newXPos = transform.position.x + deltaHor; 
-        transform.position = new Vector3(newXPos, transform.position.y, transform.position.z);
-
-      } else if ( _directionVert  != 0)
-      {
-        var deltaVert = _directionVert * _speed * Time.deltaTime; 
-        var newYPos = transform.position.y + deltaVert; 
-        transform.position = new Vector3(transform.position.x, newYPos, transform.position.z);
-
-      }
-
-      */
-
-
-
-
-      
-
-
+    private void OnDrawGizmos()
+    {   
+        Gizmos.color = IsGrounded() ? Color.green : Color.red;
+        Gizmos.DrawSphere(transform.position, 0.3f); 
     }
 
 
     public void SaySmth()
     {
-      Debug.Log("Smth");
+        Debug.Log("Smth");
     }
 
 
